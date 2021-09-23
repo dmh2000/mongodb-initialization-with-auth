@@ -11,6 +11,10 @@ I recommend that first you work through the 6 separate steps (_step1.sh_, ...) a
 
 This procedure is straight from the (Mongodb Version 5 documentation](https://docs.mongodb.com/manual/tutorial/enable-authentication/), with complete script(s).
 
+This was tested on Unbuntu 21 with locally installed current versions of Mongodb 5.0 and Mongosh (shell) 1.0.7. It seems like the distribution versions (with apt) are always a bit too old.
+
+The scripts use [Bash Here Documents](https://tldp.org/LDP/abs/html/here-docs.html) to pipe commands into the mongo shell. If you aren't familiar with them, read about it here. By convention, the string EOF is used as the bracketing delimiter.
+
 ## STEP-BY-STEP
 
 1. source step1.sh
