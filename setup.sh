@@ -32,7 +32,8 @@ db.createUser(
       pwd:"$MONGO_ADMIN_PASSWORD",
       roles: [
         {role: "userAdminAnyDatabase", db: "admin"},
-        {role: "readWriteAnyDatabase", db: "admin"}
+        {role: "readWriteAnyDatabase", db: "admin"},
+        {role: "hostManager", db: "admin"}
       ]
   }
 )

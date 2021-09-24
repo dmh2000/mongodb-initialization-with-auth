@@ -1,21 +1,20 @@
 #!/bin/bash
 
 echo ================================
-echo STEP 1 CREATE USER ADMINSTRATOR
+echo STEP 3 CREATE A NEW USER
 echo ================================
-mongosh --port 27017 <<EOF
-use admin
+# connect as admin and create a user
+echo mongosh --port 27017 --authenticationDatabase "admin" --username ${MONGO_INITDB_ROOT_USERNAME} --password ${MONGO_INITDB_ROOT_PASSWORD}
+mongosh --port 27017 --authenticationDatabase "admin" --username ${MONGO_INITDB_ROOT_USERNAME} --password ${MONGO_INITDB_ROOT_PASSWORD} << EOF
+use $MONGO_DB_DATABASE
 db.createUser(
-    {
-      user:"userAdmin",
-      pwd:"$MONGO_ADMIN_PASSWORD",
-      roles: [
-        {role: "userAdminAnyDatabase", db: "admin"},
-        {role: "readWriteAnyDatabase", db: "admin"}
-      ]
-  }
+  {
+    user:"$MONGO_DB_USERNAME",
+     pwd: "$MONGO_DB_PASSWORD",
+     roles: [
+       { role: "readWrite", db:"$MONGO_DB_DATABASE"}
+     ]
+   }
 )
-db.adminCommand( { shutdown: 1} )
 quit()
 EOF
-

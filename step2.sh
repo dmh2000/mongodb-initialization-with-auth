@@ -1,12 +1,13 @@
 #/bin/bash
 
+# RUN THIS IN A SEPARATE SHELL
+# this autmatically creates an admin user with root permissions
+# see docker-compose.yml
+# https://hub.docker.com/_/mongo
+# 
 echo ================================
-echo START MONGODB WITH NEW DATABASE
+echo START MONGODB AND CREATE ADMIN
 echo ================================
-echo mongod --fork --logpath ${MONGO_DATABASE_PATH}/testlog --dbpath=${MONGO_DATABASE_PATH}
-mongod --fork --logpath ${MONGO_DATABASE_PATH}/testlog --dbpath=${MONGO_DATABASE_PATH}
 
-# wait 5 seconds for it to start
-echo sleep 5 for restart
-sleep 5
-
+# docker compose
+docker-compose up --detach

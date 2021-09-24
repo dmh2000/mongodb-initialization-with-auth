@@ -1,11 +1,24 @@
 # SOURCE THIS FILE
-# set the password as an environment variable
-# do this in a separate file so the exports are visible in all scripts
-export MONGO_ADMIN_PASSWORD=12345
-export MONGO_USER_PASSWORD=54321
-export MONGO_DATABASE_PATH=~/projects/mongo/db
 
-# clear the existing database path and recreate it
-rm -rf ${MONGO_DATABASE_PATH}
-mkdir ${MONGO_DATABASE_PATH}
-ls -l ${MONGO_DATABASE_PATH}/..
+# stop running instance, if any
+docker-compose stop
+
+# remove existing container
+docker rm mongo_db
+
+# clear all relevant environment variables
+source clrenv.sh
+
+# set the required environment variables
+source setenv.sh
+
+# clear the existing database in local storage
+rm -rf ${MONGO_DB_PATH}
+
+# create directory structure
+mkdir  ${MONGO_DB_PATH}
+mkdir  ${MONGO_DB_PATH}/db
+mkdir  ${MONGO_DB_PATH}/configdb
+ls -lR  ${MONGO_DB_PATH}
+
+
